@@ -8,7 +8,6 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Satisfy" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="{% static 'music/style.css' %}" />
 </head>
 <body>
     <nav class="navbar navbar-inverse">
@@ -33,6 +32,12 @@
                 -->
                 <ul class="nav navbar-nav navbar-right">
                     <li class="">
+                        <a href="{% url 'healthcare:register' %}?role=doctor">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;
+                            Doctor
+                        </a>
+                    </li>
+                    <li class="">
                         <a href="{% url 'healthcare:register' %}">
                             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;
                             Register
@@ -45,7 +50,7 @@
                                 Logout
                             </a>
                         {% else %}
-                            <a href="/admin/">
+                            <a href="{% url 'healthcare:login' %}">
                                 <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp;
                                 Login
                             </a>

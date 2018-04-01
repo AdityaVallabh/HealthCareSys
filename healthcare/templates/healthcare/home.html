@@ -2,5 +2,16 @@
 {% block title %}Home{% endblock %}
 
 {% block body %}
-<p>Hello World. It's Working</p>
+<p>Hello 
+    {% if request.user.is_authenticated %}
+        {{ user }}, you are a 
+        {% if user.doctorprofile  %}
+            doctor
+        {% else %}
+            user
+        {% endif %}
+    {% else %}
+        World
+    {% endif %}
+    ! It's Working</p>
 {% endblock %}

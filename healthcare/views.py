@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.views.generic import View
-from .forms import UserForm, ProfileForm
-from .models import UserProfile
+from .forms import UserForm, ProfileForm, DoctorForm
+from .models import UserProfile, DoctorProfile
 from django.contrib.auth import logout
 
 def index(request):
@@ -14,11 +14,15 @@ def logout_view(request):
 
 class UserFormView(View):
     form_class = UserForm
-    template_name = 'healthcare/registration_form.html'
+    template_name = 'registration/registration_form.html'
 
     def get(self, request):
+        if request.GET.get('role', 'user') == 'doctor':
+            profile_form = DoctorForm(None)
+        else:
+            profile_form = ProfileForm(None)
+
         user_form = self.form_class(None)
-        profile_form = ProfileForm(None)
         return render(request, self.template_name, {'user_form': user_form, 'profile_form': profile_form})
 
     def post(self, request):
@@ -31,8 +35,10 @@ class UserFormView(View):
             user.set_password(password)
             user.save()
 
-            
-            profile = ProfileForm(request.POST).save(commit=False)
+            if request.GET.get('role', 'user') == 'doctor':
+                profile = DoctorForm(request.POST).save(commit=False)
+            else:
+                profile = ProfileForm(request.POST).save(commit=False)
             profile.user = user
             profile.save()
             
@@ -42,6 +48,6 @@ class UserFormView(View):
                 if user.is_active:
                     login(request, user)
                     return redirect('healthcare:index')
-
-        return render(request, self.template_name, {'form': form})
+        print('error')
+        return render(request, self.template_name, {'form': form, 'message': form.errors})
 
