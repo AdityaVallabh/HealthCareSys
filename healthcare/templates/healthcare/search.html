@@ -1,0 +1,39 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12 col-md-7">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <form class="form-horizontal" action="" method="GET" enctype="multipart/form-data">
+                        <label>Location: </label>
+                        <input name='location' type='text'><br />
+                        <label>Specialty: </label>
+                        <input name='specialty' type='text'><br />
+                        <div class="form-group">
+                            <div class="col-sm-offset col-sm-10">
+                                <button type="submit" class="btn btn-success">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% if doctors %}
+        Doctors found:
+        <table class="table table-hover">
+            <tr>
+                <th>Doctor Name</th>
+                <th>Hospital Name</th>
+                <th>Contact Number</th>
+            </tr>
+            {% for doctor in doctors %}
+                <tr>
+                    <td>{{ doctor.user.first_name }} {{ doctor.user.last_name }}</td>
+                    <td>{{ doctor.hospital }}</td>
+                    <td>{{ doctor.specialization }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+
+</div>

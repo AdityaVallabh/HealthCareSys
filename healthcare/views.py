@@ -2,15 +2,19 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.views.generic import View
 from .forms import UserForm, ProfileForm, DoctorForm
-from .models import UserProfile, DoctorProfile
+from .models import UserProfile, DoctorProfile, Hospital
 from django.contrib.auth import logout
 
 def index(request):
+    if not request.GET.get('location', 'none') == 'none' or not request.GET.get('specialty', 'none') == 'none':
+        location = request.GET['location']
+        specialty = request.GET['specialty']
+        hospitals = Hospital.objects.filter(location__contains=location)
+        doctors = []
+        for hospital in hospitals:
+            doctors += DoctorProfile.objects.filter(hospital=hospital, specialization__contains=specialty)
+        return render(request, 'healthcare/home.html', {'doctors': doctors})    
     return render(request, 'healthcare/home.html')
-
-def logout_view(request):
-    logout(request)
-    return redirect('healthcare:index')
 
 class UserFormView(View):
     form_class = UserForm
@@ -48,6 +52,6 @@ class UserFormView(View):
                 if user.is_active:
                     login(request, user)
                     return redirect('healthcare:index')
-        print('error')
+
         return render(request, self.template_name, {'form': form, 'message': form.errors})
 

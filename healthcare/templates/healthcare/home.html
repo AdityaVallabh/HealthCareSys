@@ -2,16 +2,17 @@
 {% block title %}Home{% endblock %}
 
 {% block body %}
-<p>Hello 
+<p>
     {% if request.user.is_authenticated %}
-        {{ user }}, you are a 
+        Logged in as {{ user }}
         {% if user.doctorprofile  %}
-            doctor
+            
         {% else %}
-            user
+            
         {% endif %}
     {% else %}
-        World
+        
     {% endif %}
-    ! It's Working</p>
+    {% include 'healthcare/search.html' %}
+</p>
 {% endblock %}
