@@ -6,7 +6,7 @@ from .models import UserProfile, DoctorProfile, Hospital
 from django.contrib.auth import logout
 
 def index(request):
-    if not request.GET.get('location', 'none') == 'none' or not request.GET.get('specialty', 'none') == 'none':
+    if not request.GET.get('location', 'none') == 'none' and not request.GET.get('specialty', 'none') == 'none':
         location = request.GET['location']
         specialty = request.GET['specialty']
         hospitals = Hospital.objects.filter(location__contains=location)

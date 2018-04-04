@@ -32,9 +32,14 @@ class DoctorProfile(models.Model):
         return self.user.username
 
 class Appointment(models.Model):
+    appointment_id = models.AutoField(primary_key=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     doctor = models.ForeignKey(DoctorProfile, on_delete=models.CASCADE)
     booking_time = models.DateTimeField(default=datetime.now)
     appointment_time = models.DateTimeField()
-    status = models.CharField(max_length=50)
+    prescription = models.TextField(default='Prescription will be filled by the doctor.')
+    status = models.CharField(max_length=500)
     fee = models.IntegerField(default=500)
+
+    def __str__(self):
+        return str(self.appointment_id) + ': ' + self.user.username + ' - ' + self.doctor.user.username
