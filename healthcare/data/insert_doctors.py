@@ -1,5 +1,6 @@
 from random import randrange
-from healthcare.models import Hospital, DoctorProfile
+from healthcare.models import Hospital
+from accounts.models import DoctorProfile
 from django.contrib.auth.models import User
 from django.db import transaction
 inserted = 0
@@ -12,7 +13,7 @@ with open('./healthcare/data/doctors.tsv') as f:
             first_name, last_name = full_name[0], full_name[-1]
             username = first_name + last_name
             contact = row[2]
-            specialization = row[3]
+            specialization = row[3].replace('\n','')
             email = username + '@gmail.com'
             password = 'pass123'
             hospital = Hospital.objects.get(pk=(randrange(30)+1))

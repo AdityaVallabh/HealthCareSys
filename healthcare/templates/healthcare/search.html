@@ -5,9 +5,9 @@
                 <div class="panel-body">
                     <form class="form-horizontal" action="" method="GET" enctype="multipart/form-data">
                         <label>Location: </label>
-                        <input name='location' type='text'><br />
+                        <input name='location' class="form-control" type='text'><br />
                         <label>Specialty: </label>
-                        <input name='specialty' type='text'><br />
+                        <input name='specialty' class="form-control" type='text'><br />
                         <div class="form-group">
                             <div class="col-sm-offset col-sm-10">
                                 <button type="submit" class="btn btn-success">Submit</button>
@@ -19,21 +19,23 @@
         </div>
     </div>
     {% if doctors %}
-        Doctors found:
-        <table class="table table-hover">
-            <tr>
-                <th>Doctor Name</th>
-                <th>Hospital Name</th>
-                <th>Department</th>
-            </tr>
-            {% for doctor in doctors %}
-                <tr>
-                    <td>{{ doctor.user.first_name }} {{ doctor.user.last_name }}</td>
-                    <td>{{ doctor.hospital }}</td>
-                    <td>{{ doctor.specialization }}</td>
-                </tr>
-            {% endfor %}
-        </table>
+    Doctors found:
+    <table class="table table-hover">
+        <tr>
+            <th>Doctor Name</th>
+            <th>Hospital Name</th>
+            <th>Department</th>
+            <th>Book</th>
+        </tr>
+        {% for doctor in doctors %}
+        <tr>
+            <td>{{ doctor.user.first_name }} {{ doctor.user.last_name }}</td>
+            <td>{{ doctor.hospital }}</td>
+            <td>{{ doctor.specialization }}</td>
+            <td><a href="">Book</a></td>
+        </tr>
+        {% endfor %}
+    </table>
     {% endif %}
-
+    
 </div>

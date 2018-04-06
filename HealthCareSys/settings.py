@@ -31,7 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'healthcare',
+    'accounts.apps.AccountsConfig',
+    'healthcare.apps.HealthcareConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -115,7 +116,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-LOGIN_REDIRECT_URL = '/'
 
 
 # Static files (CSS, JavaScript, Images)

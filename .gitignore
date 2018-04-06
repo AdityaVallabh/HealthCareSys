@@ -1,7 +1,6 @@
 *.egg-info
 *.pot
 *.py[co]
-*.pyc
 .tox/
 .vscode
 migrations/

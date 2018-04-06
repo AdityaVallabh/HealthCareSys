@@ -32,25 +32,25 @@
                 -->
                 <ul class="nav navbar-nav navbar-right">
                     <li class="">
-                        <a href="{% url 'healthcare:register' %}?role=doctor">
+                        <a href="{% url 'accounts:home' %}?role=doctor">
                             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;
                             Doctor
                         </a>
                     </li>
                     <li class="">
-                        <a href="{% url 'healthcare:register' %}">
+                        <a href="{% url 'accounts:register' %}">
                             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;
                             Register
                         </a>
                     </li>
                     <li>
                         {% if request.user.is_authenticated %}
-                            <a href="{% url 'healthcare:logout' %}">
+                            <a href="{% url 'accounts:logout' %}">
                                 <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp;
                                 Logout
                             </a>
                         {% else %}
-                            <a href="{% url 'healthcare:login' %}">
+                            <a href="{% url 'accounts:login' %}">
                                 <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp;
                                 Login
                             </a>
