@@ -1,41 +1,37 @@
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-12 col-md-7">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <form class="form-horizontal" action="" method="GET" enctype="multipart/form-data">
-                        <label>Location: </label>
-                        <input name='location' class="form-control" type='text'><br />
-                        <label>Specialty: </label>
-                        <input name='specialty' class="form-control" type='text'><br />
-                        <div class="form-group">
-                            <div class="col-sm-offset col-sm-10">
-                                <button type="submit" class="btn btn-success">Submit</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+{% load staticfiles %}
+
+    <div class="panel-body">
+      <form class="search-container" action="" method="GET" enctype="multipart/form-data">
+        <div>
+        <input name='location' class="form-control" type="text" id="search-bar" placeholder="Location"><br />
+        <input name='specialty' class="form-control" type="text" id="search-bar" placeholder="Specialty"><br />
+        <div class="form-group">
+              <center><button class="button-three">Search</button></center>
         </div>
+      </div>
+      </form>
     </div>
+
     {% if doctors %}
-    Doctors found:
-    <table class="table table-hover">
-        <tr>
-            <th>Doctor Name</th>
-            <th>Hospital Name</th>
-            <th>Department</th>
-            <th>Book</th>
-        </tr>
+        <div class="container-fluid">
+        <ul id="results">
         {% for doctor in doctors %}
-        <tr>
-            <td>{{ doctor.user.first_name }} {{ doctor.user.last_name }}</td>
-            <td>{{ doctor.hospital }}</td>
-            <td>{{ doctor.specialization }}</td>
-            <td><a href="">Book</a></td>
-        </tr>
+        <li>
+          <div class="list-left">
+            <img src="{% static "img/doctor1.jpg" %}"  width="50px" height="300px">
+          </div>
+          <div class="list-right">
+            <h2>Dr.{{ doctor.user.first_name }} {{ doctor.user.last_name }}</h2>
+            <br><h3>{{ doctor.hospital }}</h3><br>
+            <h3>{{ doctor.specialization }}</h3><br>
+
+            <div class="sub-main">
+      <button class="button-three">Appointment</button>
+          </div>
+          </li>
         {% endfor %}
-    </table>
+      </ul>
     {% endif %}
-    
+  </div>
+
 </div>

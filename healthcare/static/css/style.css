@@ -1,0 +1,136 @@
+span {
+    margin: 0 10px;
+}
+
+span:first-of-type {
+    margin-left: 0;
+}
+
+span:last-of-type {
+    margin-right: 0;
+}
+#results li {
+    padding: 10px 0;
+    border-bottom: 1px dotted #ccc;
+    list-style: none;
+    overflow: auto;
+}
+.list-left {
+    float: left;
+    width: 20%;
+}
+.list-left img {
+    width: 100%;
+    padding: 3px;
+    border: 1px solid #ccc;
+}
+.list-right {
+    float: right;
+    width: 78%;
+}
+.list-right h3 {
+    margin: 0;
+}
+.list-right p {
+    margin: 0;
+}
+
+.cTitle {
+    color: #dd2826;
+}
+
+.button-container {
+    margin-top: 25px;
+
+}
+.search-container{
+  width: 490px;
+  display: block;
+  margin: 0 auto;
+}
+
+input#search-bar{
+  margin: 0 auto;
+  width: 100%;
+  height: 45px;
+  padding: 0 20px;
+  font-size: 2rem;
+  border: 1px solid #D0CFCE;
+  outline: none;
+  &:focus{
+    border: 1px solid #008ABF;
+    transition: 0.35s ease;
+    color: #008ABF;
+    &::-webkit-input-placeholder{
+      transition: opacity 0.45s ease;
+  	  opacity: 0;
+     }
+    &::-moz-placeholder {
+      transition: opacity 0.45s ease;
+  	  opacity: 0;
+     }
+    &:-ms-placeholder {
+     transition: opacity 0.45s ease;
+  	 opacity: 0;
+     }
+   }
+ }
+
+.search-icon{
+  position: relative;
+  float: right;
+  width: 75px;
+  height: 75px;
+  top: -62px;
+  right: -45px;
+}
+.paging-button {
+    background: #f4f4f4;
+    padding: 0 13px;
+    border: #ccc 1px solid;
+    border-radius: 5px;
+    color: #333;
+    margin: 10px;
+    cursor: pointer;
+}
+.sub-main{
+  width: 30%;
+  margin:20px;
+  float: left;
+}
+.button-three{
+  text-align: center;
+  cursor: pointer;
+  font-size:22px;
+}
+.button-three {
+    position: relative;
+    background-color: #f39c12;
+    border: none;
+    padding: 10px;
+    width: 200px;
+    text-align: center;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    text-decoration: none;
+    overflow: hidden;
+}
+
+.button-three:hover{
+   background:#fff;
+   box-shadow:0px 2px 10px 5px #97B1BF;
+   color:#000;
+}
+
+.button-three:after {
+    content: "";
+    background: #f1c40f;
+    display: block;
+    position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    margin-left: -20px !important;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 0.8s
+}
