@@ -4,6 +4,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from datetime import datetime 
 from accounts.models import DoctorProfile
+from django.core.urlresolvers import reverse
 
 class Hospital(models.Model):
     name = models.CharField(max_length=100)
@@ -23,6 +24,9 @@ class Appointment(models.Model):
     prescription = models.TextField(default='Prescription will be filled by the doctor.')
     status = models.CharField(max_length=500)
     fee = models.IntegerField(default=500)
+
+    def get_absolute_url(self):
+        return reverse('healthcare:appointment-detail', kwargs={'pk': self.pk})
 
     def __str__(self):
         return str(self.appointment_id) + ': ' + self.user.username + ' - ' + self.doctor.user.username

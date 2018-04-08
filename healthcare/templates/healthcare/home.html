@@ -4,14 +4,16 @@
 {% block body %}
 <p>
     {% if request.user.is_authenticated %}
-        Logged in as {{ user }}
+        Logged in as {{ user }} <br />
         {% if user.doctorprofile  %}
-            
+            {% include 'healthcare/doctor.html' %}
+        {% elif user.userprofile %}
+            {% include 'healthcare/user.html' %}
         {% else %}
-            
+            Unidentified User :/ <br />
         {% endif %}
     {% else %}
-        
+        You are not logged in
     {% endif %}
     {% include 'healthcare/search.html' %}
 </p>

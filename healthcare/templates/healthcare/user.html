@@ -1,0 +1,9 @@
+{% if appointments %}
+    <ul>
+        {% for appointment in appointments %}
+        <li><a href="{% url 'healthcare:appointment-detail' appointment.pk %}">{{ appointment }}</a></li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <h3>You have no appointments!</h3>
+{% endif %}

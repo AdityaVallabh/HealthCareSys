@@ -1,0 +1,17 @@
+{% extends 'healthcare/base.html' %}
+{% block title %}Appointment{% endblock %}
+{% block body %}
+    {% if request.user.userprofile %}
+        {% if appointment.user == request.user %}
+            <p>{{ appointment }}</p>
+        {% else %}
+            <p>You are not authorized to view this page!</p>
+        {% endif %}
+    {% elif request.user.doctorprofile %}
+        {% if appointment.doctor == request.user.doctorprofile %}
+            <p>{{ appointment }}</p>
+        {% else %}
+            <p>You are not authorized to view this page!</p>
+        {% endif %}
+    {% endif %}
+{% endblock %}

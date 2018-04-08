@@ -1,7 +1,7 @@
 {% load staticfiles %}
 
     <div class="panel-body">
-      <form class="search-container" action="" method="GET" enctype="multipart/form-data">
+      <form class="search-container" action="{% url 'healthcare:search' %}" method="GET" enctype="multipart/form-data">
         <div>
         <input name='location' class="form-control" type="text" id="search-bar" placeholder="Location"><br />
         <input name='specialty' class="form-control" type="text" id="search-bar" placeholder="Specialty"><br />
@@ -26,7 +26,7 @@
             <h3>{{ doctor.specialization }}</h3><br>
 
             <div class="sub-main">
-      <button class="button-three">Appointment</button>
+      <button class="button-three" onclick=location.href="{% url 'healthcare:book-appointment' %}?doctor_id={{ doctor.id }}">Appointment</button>
           </div>
           </li>
         {% endfor %}
