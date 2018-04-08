@@ -2,11 +2,12 @@
     {{ message }}
 {% endif %}
 {% for field in form %}
-<div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
+<center><div class="form-group">
         <span class="text-danger small">{{ field.errors }}</span>
-    </div>
-    <label class="control-label col-sm-2">{{ field.label_tag }}</label>
-    <div class="col-sm-10">{{ field }}</div>
+    <!-- <label class="control-label col-sm-2">{{ field.label_tag }}</label> -->
+    <div class="search-container">{{ field }}<br /></div>
+    <!-- <input class="form-control" type="" id="search-bar" placeholder="{{ field.placeholder }}"><br /> -->
+    <!-- {{ field }} -->
 </div>
+</center>
 {% endfor %}

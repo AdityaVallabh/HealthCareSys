@@ -1,7 +1,12 @@
 span {
     margin: 0 10px;
 }
-
+/* .containers {
+	max-width:400px;
+	width:100%;
+	margin:0 auto;
+	position:relative;
+} */
 span:first-of-type {
     margin-left: 0;
 }
