@@ -22,7 +22,7 @@ class Appointment(models.Model):
     booking_time = models.DateTimeField(default=datetime.now)
     appointment_time = models.DateTimeField()
     prescription = models.TextField(default='Prescription will be filled by the doctor.')
-    status = models.CharField(max_length=500)
+    status = models.CharField(max_length=500, default='Unconfirmed')
     fee = models.IntegerField(default=500)
 
     def get_absolute_url(self):

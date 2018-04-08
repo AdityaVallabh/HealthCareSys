@@ -2,17 +2,17 @@
 {% block title %}Home{% endblock %}
 
 {% block body %}
-<p>
     {% if request.user.is_authenticated %}
         Logged in as {{ user }} <br />
         {% if user.doctorprofile  %}
 
+        {% include 'healthcare/doctor.html' %}
         {% else %}
+        {% include 'healthcare/user.html' %}
 
         {% endif %}
     {% else %}
+    {% include 'healthcare/homepage.html' %}
 
     {% endif %}
-    {% include 'healthcare/homepage.html' %}
-</p>
 {% endblock %}

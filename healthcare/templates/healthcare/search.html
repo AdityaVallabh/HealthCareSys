@@ -30,7 +30,7 @@
               <h3>{{ doctor.specialization }}</h3><br>
   
               <div class="sub-main">
-        <button class="button-three">Appointment</button>
+        <button class="button-three" onclick=location.href="{% url 'healthcare:book-appointment' %}?doctor_id={{ doctor.id }}">Appointment</button>
             </div>
             </li>
           {% endfor %}
