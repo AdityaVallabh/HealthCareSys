@@ -1,37 +1,45 @@
+{% extends 'healthcare/base.html' %}
+{% block title %}Home{% endblock %}
 {% load staticfiles %}
-
-    <div class="panel-body">
-      <form class="search-container" action="{% url 'healthcare:search' %}" method="GET" enctype="multipart/form-data">
-        <div>
-        <input name='location' class="form-control" type="text" id="search-bar" placeholder="Location"><br />
-        <input name='specialty' class="form-control" type="text" id="search-bar" placeholder="Specialty"><br />
-        <div class="form-group">
-              <center><button class="button-three">Search</button></center>
+{% block body %}
+<p>
+    <div >
+      <div class="panel-body">
+        <form class="search-container" action="" method="GET" enctype="multipart/form-data">
+          <div>
+          <input name='location' class="form-control" type="text" id="search-bar" placeholder="Location"><br />
+          <input name='specialty' class="form-control" type="text" id="search-bar" placeholder="Specialty"><br />
+          <div class="form-group">
+                <center><button class="button-three">Search</button></center>
+          </div>
         </div>
+        </form>
       </div>
-      </form>
+  
+      {% if doctors %}
+          <div class="container" style="background-color: #F9F9F9;opacity:0.86">
+          <ul id="results">
+          {% for doctor in doctors %}
+          <li>
+            <div class="list-left">
+              <img src="{% static "img/doctor1.jpg" %}"  width="100px" height="285px">
+            </div>
+            <div class="list-right">
+              <h2>Dr.{{ doctor.user.first_name }} {{ doctor.user.last_name }}</h2>
+              <br><h3>{{ doctor.hospital }}</h3><br>
+              <h3>{{ doctor.specialization }}</h3><br>
+  
+              <div class="sub-main">
+        <button class="button-three">Appointment</button>
+            </div>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
     </div>
-
-    {% if doctors %}
-        <div class="container-fluid">
-        <ul id="results">
-        {% for doctor in doctors %}
-        <li>
-          <div class="list-left">
-            <img src="{% static "img/doctor1.jpg" %}"  width="50px" height="300px">
-          </div>
-          <div class="list-right">
-            <h2>Dr.{{ doctor.user.first_name }} {{ doctor.user.last_name }}</h2>
-            <br><h3>{{ doctor.hospital }}</h3><br>
-            <h3>{{ doctor.specialization }}</h3><br>
-
-            <div class="sub-main">
-      <button class="button-three" onclick=location.href="{% url 'healthcare:book-appointment' %}?doctor_id={{ doctor.id }}">Appointment</button>
-          </div>
-          </li>
-        {% endfor %}
-      </ul>
-    {% endif %}
+  
   </div>
-
-</div>
+  </div>
+  
+</p>
+{% endblock %}

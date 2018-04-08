@@ -9,6 +9,9 @@ from django.views import generic
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
+def index(request):    
+    return render(request, 'healthcare/home.html')
+
 def search(request):
     if not request.GET.get('location', 'none') == 'none' and not request.GET.get('specialty', 'none') == 'none':
         location = request.GET['location']
@@ -17,8 +20,8 @@ def search(request):
         doctors = []
         for hospital in hospitals:
             doctors += DoctorProfile.objects.filter(hospital=hospital, specialization__contains=specialty)
-        return render(request, 'healthcare/home.html', {'doctors': doctors})    
-    return render(request, 'healthcare/home.html')
+        return render(request, 'healthcare/search.html', {'doctors': doctors})    
+    return render(request, 'healthcare/search.html')
 
 
 @method_decorator(login_required, name='dispatch')
