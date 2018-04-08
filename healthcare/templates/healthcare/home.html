@@ -6,13 +6,13 @@
     {% if request.user.is_authenticated %}
         Logged in as {{ user }}
         {% if user.doctorprofile  %}
-            
+
         {% else %}
-            
+
         {% endif %}
     {% else %}
-        
+
     {% endif %}
-    {% include 'healthcare/search.html' %}
+    {% include 'healthcare/homepage.html' %}
 </p>
 {% endblock %}

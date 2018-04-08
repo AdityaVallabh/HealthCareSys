@@ -1,37 +1,18 @@
-{% load staticfiles %}
+{% extends 'healthcare/base.html' %}
+{% block title %}Home{% endblock %}
 
-    <div class="panel-body">
-      <form class="search-container" action="" method="GET" enctype="multipart/form-data">
-        <div>
-        <input name='location' class="form-control" type="text" id="search-bar" placeholder="Location"><br />
-        <input name='specialty' class="form-control" type="text" id="search-bar" placeholder="Specialty"><br />
-        <div class="form-group">
-              <center><button class="button-three">Search</button></center>
-        </div>
-      </div>
-      </form>
-    </div>
+{% block body %}
+<p>
+    {% if request.user.is_authenticated %}
+        Logged in as {{ user }}
+        {% if user.doctorprofile  %}
 
-    {% if doctors %}
-        <div class="container-fluid">
-        <ul id="results">
-        {% for doctor in doctors %}
-        <li>
-          <div class="list-left">
-            <img src="{% static "img/doctor1.jpg" %}"  width="50px" height="300px">
-          </div>
-          <div class="list-right">
-            <h2>Dr.{{ doctor.user.first_name }} {{ doctor.user.last_name }}</h2>
-            <br><h3>{{ doctor.hospital }}</h3><br>
-            <h3>{{ doctor.specialization }}</h3><br>
+        {% else %}
 
-            <div class="sub-main">
-      <button class="button-three">Appointment</button>
-          </div>
-          </li>
-        {% endfor %}
-      </ul>
+        {% endif %}
+    {% else %}
+
     {% endif %}
-  </div>
-
-</div>
+    {% include 'healthcare/results.html' %}
+</p>
+{% endblock %}

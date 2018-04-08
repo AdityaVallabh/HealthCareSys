@@ -2,24 +2,17 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-12 col-md-7">
-            <div class="panel panel-default">
+              <center><div style="background-color: #F9F9F9;width:500px;">
                 <div class="panel-body">
-                    <form class="form-horizontal" action="" method="POST" enctype="multipart/form-data">
+                  <h2 style="color: #F96;	display: block;	font-size: 30px;font-weight: 400;">Register<h2><br />
+                    <form id="contact" class="form-horizontal" action="" method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
                         {% include 'registration/form-template.html' with form=user_form%}
                         {% include 'registration/form-template.html' with form=profile_form%}
                         <div class="form-group">
-                            <div class="col-sm-offset col-sm-10">
-                                <button type="submit" class="btn btn-success">Submit</button>
-                            </div>
+                            <center><button class="button-three">Register</button></center>
                         </div>
                     </form>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
+              </div></center>
 {% endblock %}
