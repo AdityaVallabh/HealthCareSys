@@ -7,9 +7,9 @@ class AppointmentForm(forms.ModelForm):
 
     class Meta:
         model = Appointment
-        fields = ['doctor', 'appointment_time']
+        fields = ['doctor', 'appointment_date']
         widgets = {
-            'appointment_time': forms.DateInput(attrs={
-        'type':'date'})
+            'appointment_date': forms.DateInput(attrs={
+            'type':'date'})
         }
             

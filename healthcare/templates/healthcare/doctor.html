@@ -3,10 +3,11 @@
     {% if appointments %}
     <table class="table table-hover">
         <thead>
-            <th>Appointment ID</th>
+            <th>ID</th>
             <th>Patient Name</th>
             <th>Booking Time</th>
             <th>Appointment Date</th>
+            <th>Appointment Time</th>
             <th>Status</th>
         </thead>
         <tbody>
@@ -15,6 +16,7 @@
                 <td>{{ appointment.pk }}</td>
                 <td>{{ appointment.user.first_name }} {{ appointment.user.last_name }}</td>
                 <td>{{ appointment.booking_time }}</td>
+                <td>{{ appointment.appointment_date }}</td>
                 <td>{{ appointment.appointment_time }}</td>
                 <td>{{ appointment.status }}</td>
             </tr>

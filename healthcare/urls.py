@@ -6,7 +6,8 @@ app_name = 'healthcare'
 
 urlpatterns = [
     url(r'^$', views.IndexView.as_view(), name='index'),
-    url(r'^appointment/', views.AppointmentCreate.as_view(), name='book-appointment'),
+    url(r'^appointment/$', views.AppointmentCreate.as_view(), name='book-appointment'),
     url(r'^(?P<pk>[0-9]+)/', views.AppointmentDetail.as_view(), name='appointment-detail'),
+    url(r'^appointment/(?P<pk>[0-9]+)/$', views.AppointmentUpdate.as_view(), name='appointment-update'),
     url(r'^search/', views.search, name='search'),
 ]

@@ -17,6 +17,10 @@
                         <td>{{ appointment.booking_time }}</td>
                     </tr>
                     <tr>
+                        <th>Appointment Date</th>
+                        <td>{{ appointment.appointment_date }}</td>
+                    </tr>
+                    <tr>
                         <th>Appointment Time</th>
                         <td>{{ appointment.appointment_time }}</td>
                     </tr>
@@ -33,6 +37,9 @@
                         <td>{{ appointment.fee }}</td>
                     </tr>
                 </table>
+            </div>
+            <div>
+                <a href="{% url 'healthcare:appointment-update' appointment.pk %}">Edit Appointment</a>
             </div>
         {% else %}
             <p>You are not authorized to view this page!</p>

@@ -16,13 +16,18 @@ class Hospital(models.Model):
         return self.name
 
 class Appointment(models.Model):
+    STATUS = (
+        ('U', 'Unconfirmed'),
+        ('C', 'Confirmed'),
+    )
     appointment_id = models.AutoField(primary_key=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     doctor = models.ForeignKey(DoctorProfile, on_delete=models.CASCADE)
     booking_time = models.DateTimeField(default=datetime.now)
-    appointment_time = models.DateTimeField()
+    appointment_date = models.DateField()
+    appointment_time = models.TimeField(blank=True, null=True)
     prescription = models.TextField(default='Prescription will be filled by the doctor.')
-    status = models.CharField(max_length=500, default='Unconfirmed')
+    status = models.CharField(max_length=500, default='Unconfirmed', choices=STATUS)
     fee = models.IntegerField(default=500)
 
     def get_absolute_url(self):

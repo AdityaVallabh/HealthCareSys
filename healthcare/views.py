@@ -39,6 +39,12 @@ class AppointmentCreate(CreateView):
         appointment.save()
         return redirect('healthcare:index')
 
+@method_decorator(login_required, name='dispatch')
+class AppointmentUpdate(UpdateView):
+    model = Appointment
+    fields = ['appointment_time', 'status', 'prescription', 'fee']
+    template_name = 'healthcare/appointment_update.html'
+    
 
 class IndexView(generic.ListView):
     template_name = 'healthcare/home.html'

@@ -3,9 +3,10 @@
     {% if appointments %}
     <table class="table table-hover">
         <thead>
-            <th>Appointment ID</th>
+            <th>ID</th>
             <th>Doctor Name</th>
             <th>Appointment Date</th>
+            <th>Appointment Time</th>
             <th>Status</th>
             <th>Consultation Fee</th>
         </thead>
@@ -14,6 +15,7 @@
             <tr onclick=window.location="{% url 'healthcare:appointment-detail' appointment.pk %}">
                 <td>{{ appointment.pk }}</td>
                 <td>{{ appointment.doctor }}</td>
+                <td>{{ appointment.appointment_date }}</td>
                 <td>{{ appointment.appointment_time }}</td>
                 <td>{{ appointment.status }}</td>
                 <td>{{ appointment.fee }}</td>
