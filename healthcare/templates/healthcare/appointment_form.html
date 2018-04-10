@@ -2,23 +2,79 @@
 {% block title %}Book Appointment{% endblock %}
 
 {% block body %}
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-12 col-md-7">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <form class="form-horizontal" action="" method="POST" enctype="multipart/form-data">
-                        {% csrf_token %}
-                        {% include 'registration/form-template.html' %}
-                        <div class="form-group">
-                            <div class="col-sm-offset col-sm-10">
-                                <button type="submit" class="btn btn-success">Submit</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+<div>
+  <div class="panel-body">
+    <form id="contact" class="search-container" action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <style>
+        input#id_appointment_date{
+          float:center;
+          margin: 0 auto;
+          width: 100%;
+          height: 45px;
+          padding: 0 20px;
+          font-size: 2rem;
+          border: 1px solid #D0CFCE;
+          outline: none;
+          &:focus{
+            border: 1px solid #008ABF;
+            transition: 0.35s ease;
+            color: #008ABF;
+            &::-webkit-input-placeholder{
+              transition: opacity 0.45s ease;
+          	  opacity: 0;
+             }
+            &::-moz-placeholder {
+              transition: opacity 0.45s ease;
+          	  opacity: 0;
+             }
+            &:-ms-placeholder {
+             transition: opacity 0.45s ease;
+          	 opacity: 0;
+             }
+           }
+        }
+        select#id_doctor{
+          float:center;
+          margin: 0 auto;
+          width: 100%;
+          height: 45px;
+          padding: 0 20px;
+          font-size: 2rem;
+          border: 1px solid #D0CFCE;
+          outline: none;
+          &:focus{
+            border: 1px solid #008ABF;
+            transition: 0.35s ease;
+            color: #008ABF;
+            &::-webkit-input-placeholder{
+              transition: opacity 0.45s ease;
+          	  opacity: 0;
+             }
+            &::-moz-placeholder {
+              transition: opacity 0.45s ease;
+          	  opacity: 0;
+             }
+            &:-ms-placeholder {
+             transition: opacity 0.45s ease;
+          	 opacity: 0;
+             }
+           }
+           &::-webkit-input-placeholder::before {
+    color:#666;
+    content:"Line 1\A Line 2\A Line 3\A";
+}
+        }
+        </style>
+        <div style="float:center;">
+          <center><h2 style="color: #F96;	display: block;	font-size: 30px;font-weight: 400;">Book Appointment<h2><br /></center>
+        {% include 'registration/form-template.html'%}
+
+        <div class="form-group">
+            <center><button class="button-three">Book Appointment</button></center>
         </div>
-    </div>
+        </div>
+    </form>
+</div>
 </div>
 {% endblock %}
