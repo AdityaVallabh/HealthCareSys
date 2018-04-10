@@ -2,8 +2,9 @@
 {% block title %}Appointment{% endblock %}
 {% block body %}
         {% if appointment.user == request.user or appointment.doctor == request.user.doctorprofile%}
-            <div class="container" style="background-color: rgba(249, 249, 249, 0.835); opacity:1">
-                <table>
+            <!-- <div class="container" style="background-color: rgba(249, 249, 249, 0.835); opacity:1"> -->
+            <center><h1 style="color: #dd5;">Appointment Details</h1>
+                <table class="rwd-table">
                     <tr>
                         <th>ID</th>
                         <td>{{ appointment.pk }}</td>
@@ -37,9 +38,9 @@
                         <td>{{ appointment.fee }}</td>
                     </tr>
                 </table>
-            </div>
+              </center>
             <div>
-                <a href="{% url 'healthcare:appointment-update' appointment.pk %}">Edit Appointment</a>
+                <center><a href="{% url 'healthcare:appointment-update' appointment.pk %}">Edit Appointment</a></center>
             </div>
         {% else %}
             <p>You are not authorized to view this page!</p>
