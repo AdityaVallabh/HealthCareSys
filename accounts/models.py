@@ -14,7 +14,7 @@ class DoctorProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     hospital = models.ForeignKey('healthcare.Hospital', on_delete=models.CASCADE)
     contact = models.CharField(max_length=50)
-    specialization = models.CharField(max_length=100)
+    specialization = models.ForeignKey('healthcare.Department', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.user.username

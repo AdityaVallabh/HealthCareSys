@@ -6,14 +6,28 @@ from datetime import datetime
 from accounts.models import DoctorProfile
 from django.core.urlresolvers import reverse
 
+class Location(models.Model):
+    location_id = models.AutoField(primary_key=True)
+    location_name = models.CharField(max_length=500)
+
+    def __str__(self):
+        return self.location_name
+
 class Hospital(models.Model):
     name = models.CharField(max_length=100)
-    location = models.CharField(max_length=100)
+    location = models.ForeignKey(Location, on_delete=models.CASCADE)
     contact = models.CharField(max_length=100, default='123456789')
     email = models.CharField(max_length=100,default='hospital_email@gmail.com')
 
     def __str__(self):
         return self.name
+
+class Department(models.Model):
+    department_id = models.AutoField(primary_key=True)
+    department_name = models.CharField(max_length=500)
+
+    def __str__(self):
+        return self.department_name
 
 class Appointment(models.Model):
     STATUS = (

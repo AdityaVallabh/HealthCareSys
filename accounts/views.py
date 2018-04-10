@@ -5,6 +5,7 @@ from django.views.generic import View
 from .forms import UserForm, ProfileForm, DoctorForm
 from .models import UserProfile, DoctorProfile
 from django.contrib.auth import logout
+from healthcare.models import Department
 
 class UserFormView(View):
     form_class = UserForm
@@ -31,6 +32,7 @@ class UserFormView(View):
 
             if request.GET.get('role', 'user') == 'doctor':
                 profile = DoctorForm(request.POST).save(commit=False)
+                Department.objects.get_or_create(department_name=profile.specialization)
             else:
                 profile = ProfileForm(request.POST).save(commit=False)
             profile.user = user

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views.generic import View
-from .models import Hospital, Appointment
+from .models import Hospital, Appointment, Location, Department
 from accounts.models import DoctorProfile
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.forms.widgets import DateInput
@@ -13,15 +13,20 @@ def index(request):
     return render(request, 'healthcare/home.html')
 
 def search(request):
+    locations = Location.objects.all().order_by('location_name')
+    departments = Department.objects.all().order_by('department_name')
     if not request.GET.get('location', 'none') == 'none' and not request.GET.get('specialty', 'none') == 'none':
         location = request.GET['location']
         specialty = request.GET['specialty']
-        hospitals = Hospital.objects.filter(location__contains=location)
+        location = Location.objects.filter(location_name=location)
+        hospitals = Hospital.objects.filter(location=location)
         doctors = []
         for hospital in hospitals:
-            doctors += DoctorProfile.objects.filter(hospital=hospital, specialization__contains=specialty)
-        return render(request, 'healthcare/search.html', {'doctors': doctors})    
-    return render(request, 'healthcare/search.html')
+            specialty = Department.objects.filter(department_name=specialty)
+            doctors += DoctorProfile.objects.filter(hospital=hospital, specialization=specialty)
+        return render(request, 'healthcare/search.html', {'doctors': doctors, 'locations': locations, 'departments': departments})
+
+    return render(request, 'healthcare/search.html', {'locations': locations, 'departments': departments})
 
 
 @method_decorator(login_required, name='dispatch')

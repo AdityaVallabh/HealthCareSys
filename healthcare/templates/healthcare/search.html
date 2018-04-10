@@ -3,42 +3,54 @@
 {% load staticfiles %}
 {% block body %}
 <p>
-    <div >
-      <div class="panel-body">
-        <form class="search-container" action="" method="GET" enctype="multipart/form-data">
-          <div>
-          <input name='location' class="form-control" type="text" id="search-bar" placeholder="Location"><br />
-          <input name='specialty' class="form-control" type="text" id="search-bar" placeholder="Specialty"><br />
+  <div >
+    <div class="panel-body">
+      <form class="search-container" action="" method="GET" enctype="multipart/form-data">
+        <div>
+          <select name="location" class="form-control" type="text" id="search-bar" required>
+            <option value="" selected="selected">Location</option>
+            {% for location in locations %}
+              <option value="{{ location }}">{{ location }}</option>
+            {% endfor %}
+          </select>
+          <br />
+          <select name="specialty" class="form-control" type="text" id="search-bar" required>
+              <option value="" selected="selected">Department</option>
+            {% for department in departments %}
+              <option value="{{ department }}">{{ department }}</option>
+            {% endfor %}
+          </select>
+          <br />
           <div class="form-group">
-                <center><button class="button-three">Search</button></center>
+            <center><button class="button-three">Search</button></center>
           </div>
         </div>
-        </form>
-      </div>
-  
-      {% if doctors %}
-          <div class="container" style="background-color: #F9F9F9;opacity:0.86">
-          <ul id="results">
-          {% for doctor in doctors %}
-          <li>
-            <div class="list-left">
-              <img src="{% static "img/doctor1.jpg" %}"  width="100px" height="285px">
+      </form>
+    </div>
+    
+    {% if doctors %}
+    <div class="container" style="background-color: #F9F9F9;opacity:0.86">
+      <ul id="results">
+        {% for doctor in doctors %}
+        <li>
+          <div class="list-left">
+            <img src="{% static "img/doctor1.jpg" %}"  width="100px" height="285px">
+          </div>
+          <div class="list-right">
+            <h2>Dr.{{ doctor.user.first_name }} {{ doctor.user.last_name }}</h2>
+            <br><h3>{{ doctor.hospital }}</h3><br>
+            <h3>{{ doctor.specialization }}</h3><br>
+            
+            <div class="sub-main">
+              <button class="button-three" onclick=location.href="{% url 'healthcare:book-appointment' %}?doctor_id={{ doctor.id }}">Appointment</button>
             </div>
-            <div class="list-right">
-              <h2>Dr.{{ doctor.user.first_name }} {{ doctor.user.last_name }}</h2>
-              <br><h3>{{ doctor.hospital }}</h3><br>
-              <h3>{{ doctor.specialization }}</h3><br>
-  
-              <div class="sub-main">
-        <button class="button-three" onclick=location.href="{% url 'healthcare:book-appointment' %}?doctor_id={{ doctor.id }}">Appointment</button>
-            </div>
-            </li>
+          </li>
           {% endfor %}
         </ul>
-      {% endif %}
+        {% endif %}
+      </div>
+      
     </div>
-  
-  </div>
   </div>
   
 </p>
