@@ -7,7 +7,7 @@
     <form id="contact" class="search-container" action="" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <style>
-        input#id_appointment_date{
+        #id_appointment_date{
           float:center;
           margin: 0 auto;
           width: 100%;
@@ -16,23 +16,6 @@
           font-size: 2rem;
           border: 1px solid #D0CFCE;
           outline: none;
-          &:focus{
-            border: 1px solid #008ABF;
-            transition: 0.35s ease;
-            color: #008ABF;
-            &::-webkit-input-placeholder{
-              transition: opacity 0.45s ease;
-          	  opacity: 0;
-             }
-            &::-moz-placeholder {
-              transition: opacity 0.45s ease;
-          	  opacity: 0;
-             }
-            &:-ms-placeholder {
-             transition: opacity 0.45s ease;
-          	 opacity: 0;
-             }
-           }
         }
         select#id_doctor{
           float:center;
@@ -43,27 +26,6 @@
           font-size: 2rem;
           border: 1px solid #D0CFCE;
           outline: none;
-          &:focus{
-            border: 1px solid #008ABF;
-            transition: 0.35s ease;
-            color: #008ABF;
-            &::-webkit-input-placeholder{
-              transition: opacity 0.45s ease;
-          	  opacity: 0;
-             }
-            &::-moz-placeholder {
-              transition: opacity 0.45s ease;
-          	  opacity: 0;
-             }
-            &:-ms-placeholder {
-             transition: opacity 0.45s ease;
-          	 opacity: 0;
-             }
-           }
-           &::-webkit-input-placeholder::before {
-    color:#666;
-    content:"Line 1\A Line 2\A Line 3\A";
-}
         }
         </style>
         <div style="float:center;">

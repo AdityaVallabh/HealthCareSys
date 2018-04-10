@@ -42,10 +42,25 @@ class AppointmentCreate(CreateView):
 @method_decorator(login_required, name='dispatch')
 class AppointmentUpdate(UpdateView):
     model = Appointment
-    fields = ['appointment_time', 'status', 'prescription', 'fee']
-    template_name = 'healthcare/appointment_update.html'
-    
+    template_name = 'healthcare/appointment_update.html'        
 
+    def dispatch(self, request, *args, **kwargs):
+        if hasattr(request.user, 'doctorprofile'):
+            self.fields = ['appointment_time', 'status', 'prescription', 'fee']
+        else:
+            self.fields = ['appointment_date']
+        return super().dispatch(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        appointment = form.save(commit=False)
+        if hasattr(self.request.user, 'userprofile'):
+            appointment.status = 'Unconfirmed'
+            appointment.appointment_time = None
+        appointment.save() 
+        return redirect(self.get_success_url())
+
+    
+    
 class IndexView(generic.ListView):
     template_name = 'healthcare/home.html'
     context_object_name = 'appointments'

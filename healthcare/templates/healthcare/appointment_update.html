@@ -7,19 +7,22 @@
         <div class="col-sm-12 col-md-7">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    {% if appointment.doctor.user == request.user %}
                     <form class="form-horizontal" action="" method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
-                        <center><div class="search-container">{{ appointment.user }}<br /></div></center>
+                        {% if appointment.doctor.user == request.user %}
+                            <center><div class="search-container">{{ appointment.user }}<br /></div></center>
+                        {% else %}
+                            <center><div class="search-container">{{ appointment.doctor.user.first_name }} {{ appointment.doctor.user.last_name }}<br /></div></center>
+                        {% endif %}
                         {% include 'registration/form-template.html' %}
+                        <script>$('#id_appointment_date').attr('type', 'date')</script>
+                        <script>$('#id_appointment_time').attr('type', 'time')</script>
                         <div class="form-group">
                             <div class="col-sm-offset col-sm-10">
                                 <button type="submit" class="btn btn-success">Submit</button>
                             </div>
-                        </div>
-                        <script>$('#id_appointment_time').attr('type', 'time')</script>
+                        </div>    
                     </form>
-                    {% endif %}
                 </div>
             </div>
         </div>

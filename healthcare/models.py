@@ -17,8 +17,8 @@ class Hospital(models.Model):
 
 class Appointment(models.Model):
     STATUS = (
-        ('U', 'Unconfirmed'),
-        ('C', 'Confirmed'),
+        ('Unconfirmed', 'Unconfirmed'),
+        ('Confirmed', 'Confirmed'),
     )
     appointment_id = models.AutoField(primary_key=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
