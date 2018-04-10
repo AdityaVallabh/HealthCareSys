@@ -38,11 +38,10 @@
                         <td>{{ appointment.fee }}</td>
                     </tr>
                 </table>
-              </center>
-            <div>
-                <center><a href="{% url 'healthcare:appointment-update' appointment.pk %}">Edit Appointment</a></center>
-            </div>
+                <center><button class="button-three" onclick="window.location.href='{% url 'healthcare:appointment-update' appointment.pk %}'">Edit Appointment</button></center>
         {% else %}
+              </center>
+
             <p>You are not authorized to view this page!</p>
         {% endif %}
 {% endblock %}
