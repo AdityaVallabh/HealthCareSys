@@ -6,6 +6,7 @@ class UserProfile(models.Model):
     contact = models.CharField(max_length=50)
     address = models.CharField(max_length=500, blank=True)
     birth_date = models.DateField(blank=True)
+    amount = models.PositiveIntegerField(default=1500)
 
     def __str__(self):
         return self.user.username
@@ -15,6 +16,8 @@ class DoctorProfile(models.Model):
     hospital = models.ForeignKey('healthcare.Hospital', on_delete=models.CASCADE)
     contact = models.CharField(max_length=50)
     specialization = models.ForeignKey('healthcare.Department', on_delete=models.CASCADE)
+    consultation_fee = models.IntegerField(default=200)
+    amount = models.PositiveIntegerField(default=100)
 
     def __str__(self):
         return self.user.username

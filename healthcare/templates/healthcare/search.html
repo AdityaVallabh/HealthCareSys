@@ -40,6 +40,7 @@
             <h2>Dr.{{ doctor.user.first_name }} {{ doctor.user.last_name }}</h2>
             <br><h3>{{ doctor.hospital }}</h3><br>
             <h3>{{ doctor.specialization }}</h3><br>
+            <h3>₹{{ doctor.consultation_fee }}</h3><br>
             
             <div class="sub-main">
               <button class="button-three" onclick=location.href="{% url 'healthcare:book-appointment' %}?doctor_id={{ doctor.id }}">Appointment</button>
