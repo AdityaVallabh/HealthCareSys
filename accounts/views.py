@@ -3,9 +3,10 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.views.generic import View
 from .forms import UserForm, ProfileForm, DoctorForm
-from .models import UserProfile, DoctorProfile
+from .models import UserProfile, DoctorProfile ,User
 from django.contrib.auth import logout
 from healthcare.models import Department
+from django.views import generic
 
 class UserFormView(View):
     form_class = UserForm
@@ -46,3 +47,10 @@ class UserFormView(View):
                     return redirect('healthcare:index')
 
         return render(request, self.template_name, {'form': form, 'message': form.errors})
+class UserDetail(generic.DetailView):
+    model = UserProfile
+    template_name = 'registration/userprofile.html'
+
+class DoctorDetail(generic.DetailView):
+    model = DoctorProfile
+    template_name = 'registration/doctorprofile.html'
