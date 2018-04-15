@@ -9,6 +9,8 @@ from django.views import generic
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.db.models import Q
+from datetime import datetime
+from datetime import date
 
 def index(request):
     return render(request, 'healthcare/home.html')
