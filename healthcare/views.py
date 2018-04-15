@@ -8,6 +8,7 @@ from .forms import AppointmentForm
 from django.views import generic
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.db.models import Q
 
 def index(request):
     return render(request, 'healthcare/home.html')
@@ -88,3 +89,15 @@ class IndexView(generic.ListView):
 class AppointmentDetail(generic.DetailView):
     model = Appointment
     template_name = 'healthcare/appointment.html'
+
+class TransactionListView(generic.ListView):
+    template_name = 'healthcare/transactions.html'
+    context_object_name = 'transactions'
+
+    def get_queryset(self):
+        if self.request.user.is_authenticated():
+            return Transaction.objects.filter(Q(from_user=self.request.user) | Q(to_user=self.request.user))
+
+class TransactionDetail(generic.DetailView):
+    model = Transaction
+    template_name = 'healthcare/transaction-detail.html'

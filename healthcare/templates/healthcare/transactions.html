@@ -1,0 +1,35 @@
+{% extends 'healthcare/base.html' %}
+{% block body %}
+<center><h3 style="color: #dd5;">Your Transaction History</h3></center>
+<center><div>
+{% if transactions %}
+<table class="rwd-table">
+  <thead>
+      <th>ID</th>
+      <th>From</th>
+      <th>To</th>
+      <th>Transaction Time</th>
+      <th>Amount</th>
+      <th>Reason</th>
+      <th>Status</th>
+  </thead>
+  <tbody>
+      {% for transaction in transactions %}
+      <tr onclick=window.location="{% url 'healthcare:transaction-detail' transaction.pk %}">
+          <td>{{ transaction.pk }}</td>
+          <td>{{ transaction.from_user }}</td>
+          <td>{{ transaction.to_user }}</td>
+          <td>{{ transaction.time }}</td>
+          <td>{{ transaction.amount }}</td>
+          <td>{{ transaction.reason }}</td>
+          <td>{{ transaction.status }}</td>
+      </tr>
+      {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<h3>You have no transactions!</h3>
+{% endif %}
+</table>
+</div></center>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'healthcare/base.html' %}
+{% block title %}Transaction Details{% endblock %}
+{% block body %}
+        {% if transaction.to_user == request.user or transaction.from_user == request.user %}
+            <!-- <div class="container" style="background-color: rgba(249, 249, 249, 0.835); opacity:1"> -->
+            <center><h1 style="color: #dd5;">Transaction Details</h1>
+                <table class="rwd-table">
+                    <tr>
+                        <th>ID</th>
+                        <td>{{ transaction.pk }}</td>
+                    </tr>
+                    <tr>
+                        <th>From</th>
+                        <td>{{ transaction.from_user }}</td>
+                    </tr>
+                    <tr>
+                        <th>To</th>
+                        <td>{{ transaction.to_user }}</td>
+                    </tr>
+                    <tr>
+                        <th>Date and Time</th>
+                        <td>{{ transaction.time }}</td>
+                    </tr>
+                    <tr>
+                        <th>Amount</th>
+                        <td>{{ transaction.amount }}</td>
+                    </tr>
+                    <tr>
+                        <th>Success</th>
+                        <td>{{ transaction.success }}</td>
+                    </tr>
+                </table>
+        {% else %}
+              </center>
+
+            <p>You are not authorized to view this page!</p>
+        {% endif %}
+{% endblock %}

@@ -36,6 +36,7 @@
               <li class=""><a href="{% url 'healthcare:search' %}">Search</a></li>
               {% if request.user.is_authenticated %}
               <li class=""><a href="{% url 'healthcare:index' %}">Appointments</a></li>
+              <li class=""><a href="{% url 'healthcare:transactions' %}">Transactions</a></li>
               {% else %}
               <li class=""><a href="{% url 'accounts:register' %}">Register</a></li>
               {% endif %}

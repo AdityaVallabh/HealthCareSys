@@ -52,6 +52,14 @@ class Transaction(models.Model):
         transaction.save()
         return transaction, status
 
+    def get_absolute_url(self):
+        return reverse('healthcare:transaction-detail', kwargs={'pk': self.pk})
+
+    def __str__(self):
+        return str(self.transaction.pk) + ': ' + self.from_user + ' to ' + self.to_user + ' - ' + self.amount
+
+
+
 class Appointment(models.Model):
     STATUS = (
         ('Unconfirmed', 'Unconfirmed'),
