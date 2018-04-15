@@ -85,6 +85,34 @@ class IndexView(generic.ListView):
                 return Appointment.objects.filter(user=self.request.user)
             elif hasattr(self.request.user, 'doctorprofile'):
                 return Appointment.objects.filter(doctor=self.request.user.doctorprofile)
+            
+    def get_context_data(self, **kwargs):
+        context = super(IndexView, self).get_context_data(**kwargs)   
+         
+        appointments=[]
+        past_appointments =[]
+
+        upcoming_appointments = []
+
+        if hasattr(self.request.user, 'userprofile'):
+            appointments=Appointment.objects.filter(user=self.request.user)
+        elif hasattr(self.request.user, 'doctorprofile'):
+            appointments=Appointment.objects.filter(doctor=self.request.user.doctorprofile)
+
+        for appointment in appointments:
+            x=datetime.combine(appointment.appointment_date,datetime.min.time())
+            z=datetime.now()
+            if  x < z:
+                past_appointments += [appointment]
+            else:
+                upcoming_appointments += [appointment]
+        
+        context['past_appointments'] = past_appointments
+        
+        context['upcoming_appointments'] = upcoming_appointments
+        
+        return context
+
 
 class AppointmentDetail(generic.DetailView):
     model = Appointment
