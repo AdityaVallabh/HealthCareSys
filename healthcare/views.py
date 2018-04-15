@@ -9,6 +9,8 @@ from django.views import generic
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.db.models import Q
+from datetime import datetime
+from django.core.mail import EmailMessage
 
 def index(request):
     return render(request, 'healthcare/home.html')
@@ -37,6 +39,27 @@ class AppointmentCreate(CreateView):
     template_name = 'healthcare/appointment_form.html'
     doctor = None
 
+    def send_email(self, transaction):
+        try:
+            subject = "Invoice for Transaction %d" % transaction.id
+            body = """
+Greetings %s!
+You've recently carried out a transaction on HealthCareSys. Here are the details for future reference:-
+
+Transaction ID: %d
+From: %s
+To: %s
+Amount: %d
+DateTime: %s
+Success: %s
+
+Wishing you the best of health,
+Team HealthCareSys.
+""" % (transaction.from_user.username, transaction.id, transaction.from_user.username, transaction.to_user.username, transaction.amount, transaction.time, transaction.success)
+            email = EmailMessage(subject, body, to=[transaction.from_user.email])
+            email.send()
+        except:
+            print("Unable to send email (%s)" % transaction.from_user.email)
     def get_initial(self):
         if self.request.GET.get('doctor_id') and DoctorProfile.objects.filter(id=self.request.GET['doctor_id']):
             return { 'doctor': DoctorProfile.objects.get(id=self.request.GET['doctor_id'])}
@@ -51,6 +74,7 @@ class AppointmentCreate(CreateView):
             appointment.save()
         else:
             print('Transaction %d failed' % transaction.id)
+        self.send_email(transaction)
         return redirect('healthcare:index')
 
 @method_decorator(login_required, name='dispatch')

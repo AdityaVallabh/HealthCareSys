@@ -33,7 +33,15 @@
         {% include 'registration/form-template.html'%}
 
         <div class="form-group">
-            <center><button class="button-three">Book Appointment</button></center>
+            <center><button class="button-three" onclick="confirm_appointment(event)">Book Appointment</button></center>
+            <script>
+              function confirm_appointment(e) {
+                msg = "Are you sure you want to book an appointment and pay Dr." + $("#id_doctor option:selected").text();
+                if(!confirm(msg)) {
+                  e.preventDefault();
+                }
+              }
+            </script>
         </div>
         </div>
     </form>

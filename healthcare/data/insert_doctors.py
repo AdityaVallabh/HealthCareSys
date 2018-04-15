@@ -11,7 +11,7 @@ with open('./healthcare/data/doctors.tsv') as f:
             row = rows.split('\t')
             full_name = row[1].split(' ')
             first_name, last_name = full_name[0], full_name[-1]
-            username = first_name + last_name
+            username = first_name + last_name + str(inserted)
             contact = row[2]
             specialization = row[3].replace('\n','')
             email = username + '@gmail.com'
