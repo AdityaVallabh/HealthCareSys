@@ -1,0 +1,124 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300i,400,600");
+
+
+.containers {
+  width: 500px;
+  height: 600px;
+  margin: 60px auto;
+  background: linear-gradient(to right, #EEBE6C 0%, #CA7C4E 100%);
+  background: linear-gradient(bottom left, #EEBE6C 100%, #CA7C4E 0%);
+  border-radius: 4px;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.content-profile {
+  width: 450px;
+  height: 550px;
+  background: #fff;
+  overflow: hidden;
+  font-family: "Open Sans", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.content-profile .profile {
+  background: #fff;
+  text-align: center;
+}
+.content-profile .profile .image-content {
+  width: 140px;
+  height: 140px;
+  margin: 30px auto;
+  position: relative;
+}
+.content-profile .profile .image-content .circle {
+  position: absolute;
+  top: -3px;
+  left: -2px;
+  border-radius: 50%;
+  border-width: 1px;
+  transition: .3s all;
+  overflow: hidden;
+  transition: 1s all;
+}
+.content-profile .profile .image-content .circle-1 {
+  width: 150px;
+  height: 150px;
+  border-style: solid;
+  border-color: #786450 #786450 #786450 #fff;
+}
+.content-profile .profile .image-content .circle-2 {
+  width: 162px;
+  height: 162px;
+  top: -8px;
+  left: -8px;
+  border-style: solid;
+  border-color: #786450 #fff #786450 #786450;
+}
+.content-profile .profile .image-content img {
+  display: block;
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+}
+.content-profile .profile .image-content:hover .circle {
+  transform: rotate(360deg);
+}
+.content-profile .profile__name {
+  color: #786450;
+  font-weight: 600;
+  font-size: 15px;
+}
+.content-profile .profile__name span {
+  display: block;
+  font-weight: 300;
+  font-size: 10px;
+}
+.content-profile .profile__options {
+  margin-top: 30px;
+}
+.content-profile .profile__options--btn {
+  display: block;
+  width: 130px;
+  margin: 10px auto;
+  text-decoration: none;
+  line-height: 2.1em;
+  border: 1px solid #786450;
+  font-size: 12px;
+  color: #786450;
+  font-weight: 600;
+  border-radius: 20px;
+  transition: .3s all;
+}
+.content-profile .profile__options--btn:hover {
+  background: #786450;
+  color: #fff;
+}
+.content-profile .profile-info {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-gap: 1px;
+}
+.content-profile .profile-info__item {
+  background: #F5E8DF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: .3s all;
+}
+.content-profile .profile-info__item p {
+  color: #786450;
+  font-weight: 600;
+  text-align: center;
+}
+.content-profile .profile-info__item p span {
+  display: block;
+  font-weight: 300;
+  font-size: 15px;
+}
+.content-profile .profile-info__item:hover {
+  background: #e9ccb8;
+  cursor: pointer;
+}

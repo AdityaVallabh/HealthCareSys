@@ -1,0 +1,81 @@
+{% extends 'healthcare/base.html' %}
+{% block title %}Update Appointment{% endblock %}
+
+{% block body %}
+<div>
+    <div class="panel-body">
+        <form id="contact" class="search-container" action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <style>
+                input#id_appointment_date{
+                    float:center;
+                    margin: 0 auto;
+                    width: 100%;
+                    height: 45px;
+                    padding: 0 20px;
+                    font-size: 2rem;
+                    border: 1px solid #D0CFCE;
+                }
+                input#id_appointment_time{
+                    float:center;
+                    margin: 0 auto;
+                    width: 100%;
+                    height: 45px;
+                    padding: 0 20px;
+                    font-size: 2rem;
+                    border: 1px solid #D0CFCE;
+                }
+                textarea#id_prescription{
+                    float:center;
+                    margin: 0 auto;
+                    width: 100%;
+                    height: 250px;
+                    padding: 0 20px;
+                    font-size: 2rem;
+                    border: 1px solid #D0CFCE;
+                    outline: none;
+                }
+                select#id_status{
+                    float:center;
+                    margin: 0 auto;
+                    width: 100%;
+                    height: 45px;
+                    padding: 0 20px;
+                    font-size: 2rem;
+                    border: 1px solid #D0CFCE;
+                    outline: none;
+                }
+                input#id_fee{
+                    float:center;
+                    margin: 0 auto;
+                    width: 100%;
+                    height: 45px;
+                    padding: 0 20px;
+                    font-size: 2rem;
+                    border: 1px solid #D0CFCE;
+                    outline: none;
+                    
+                }
+            </style>
+            <div style="float:center;">
+                <center><h2 style="color: #F96;	display: block;	font-size: 30px;font-weight: 400;">Update Appointment<h2><br /></center>
+                    {% if appointment.doctor.user == request.user %}
+                        <center><div><h2 style="color:#F96;">{{ appointment.user }}</h2><br  /></div></center>
+                    {% else %}
+                        <center><div><h2 style="color:#F96;">{{ appointment.doctor.user.first_name }} {{ appointment.doctor.user.last_name }}</h2><br /></div></center>
+                    {% endif %}
+                    {% include 'registration/form-template.html'%}
+                    <script>
+                            $('#id_appointment_time').attr('type', 'time');
+                            $('#id_appointment_date').attr('type', 'date');
+                        
+                    </script>
+                    <div class="form-group">
+                    <center><button class="button-three">Update</button></center>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    {% endblock %}
+    

@@ -1,0 +1,31 @@
+Your balance: ₹{{ request.user.doctorprofile.amount }}
+<center><h3 style="color: #dd5;">Your upcoming Appointments</h3></center>
+<center><div>
+{% if appointments %}
+<table class="rwd-table">
+  <thead>
+      <th>ID</th>
+      <th>Patient Name</th>
+      <th>Booking Time</th>
+      <th>Appointment Date</th>
+      <th>Appointment Time</th>
+      <th>Status</th>
+  </thead>
+  <tbody>
+      {% for appointment in appointments %}
+      <tr onclick=window.location="{% url 'healthcare:appointment-detail' appointment.pk %}">
+          <td>{{ appointment.pk }}</td>
+          <td>{{ appointment.user.first_name }} {{ appointment.user.last_name }}</td>
+          <td>{{ appointment.booking_time }}</td>
+          <td>{{ appointment.appointment_date }}</td>
+          <td>{{ appointment.appointment_time }}</td>
+          <td>{{ appointment.status }}</td>
+      </tr>
+      {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<h3>You have no appointments!</h3>
+{% endif %}
+</table>
+</div></center>

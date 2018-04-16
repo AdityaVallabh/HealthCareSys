@@ -1,18 +1,111 @@
 {% extends 'healthcare/base.html' %}
 {% block title %}Home{% endblock %}
-
+{% load staticfiles %}
 {% block body %}
 <p>
-    {% if request.user.is_authenticated %}
-        Logged in as {{ user }}
-        {% if user.doctorprofile  %}
+  <div >
+    <div class="panel-body">
+      <form class="search-container" action="" method="GET" enctype="multipart/form-data">
+        <div>
+          <select name="location" class="form-control" type="text" id="search-bar" required>
+            <option value="" selected="selected">Location</option>
+            {% for location in locations %}
+              <option value="{{ location }}">{{ location }}</option>
+            {% endfor %}
+          </select>
+          <br />
+          <select name="specialty" class="form-control" type="text" id="search-bar" required>
+              <option value="" selected="selected">Department</option>
+            {% for department in departments %}
+              <option value="{{ department }}">{{ department }}</option>
+            {% endfor %}
+          </select>
+          <br />
+          <div class="form-group">
+            <center><button class="button-three">Search</button></center>
+          </div>
+        </div>
+      </form>
+    </div>
 
-        {% else %}
+    {% if doctors %}
+    <style>
+    #form-main{
+    width:100%;
+    float:left;
+    padding-top:0px;
+  }
 
+  #form-div {
+    background-color:rgba(2, 76, 122,0.4);
+    padding-left:10px;
+    padding-right:10px;
+    padding-top:35px;
+    padding-bottom:50px;
+    width: 1300px;
+    float: left;
+    left: 20%;
+    margin: 10px auto;
+    position: absolute;
+    margin-top:10px;
+    margin-left: -260px;
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .btn {
+    border-radius: 5px;
+    padding: 10px 35px;
+    font-size: 22px;
+    text-decoration: none;
+    margin: 20px;
+    color: #fff;
+    position: relative;
+    display: inline-block;
+  }
+
+  .btn:active {
+    transform: translate(0px, 5px);
+    -webkit-transform: translate(0px, 5px);
+    box-shadow: 0px 1px 0px 0px;
+  }
+
+  .blue {
+    background-color: #55acee;
+    box-shadow: 0px 5px 0px 0px #3C93D5;
+  }
+
+  .blue:hover {
+    background-color: #6FC6FF;
+  }</style>
+  <div id="form-main">
+<div id="form-div">
+      <ul id="results">
+        {% for doctor in doctors %}
+        <li>
+          <div class="list-left">
+            <img src="{% static "img/doctor1.jpg" %}"  width="100px" height="285px">
+          </div>
+          <div class="list-right">
+            <h2>Dr.{{ doctor.user.first_name }} {{ doctor.user.last_name }}</h2>
+            <br><h3>{{ doctor.hospital }}</h3><br>
+            <h3>{{ doctor.specialization }}</h3><br>
+            <h3>₹{{ doctor.consultation_fee }}</h3><br>
+
+            <div class="sub-main">
+              <button class="button-three" onclick=location.href="{% url 'healthcare:book-appointment' %}?doctor_id={{ doctor.id }}">Appointment</button>
+            </div>
+          </li>
+          {% endfor %}
+        </ul>
         {% endif %}
-    {% else %}
+      </div>
 
-    {% endif %}
-    {% include 'healthcare/results.html' %}
+    </div>
+  </div>
+
 </p>
 {% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'healthcare/base.html' %}
+{% block title %}Profile{% endblock %}
+{% block body %}
+{% load staticfiles %}
+        <div class="containers">
+          <div class="content-profile">
+            <div class="profile">
+              <div class="image-content">
+                <div class="circle circle-1"></div>
+                <div class="circle circle-2"></div><img src="{% static "img/doctor1.jpg" %}" alt="imgprofile"/>
+              </div>
+              <h4 class="profile__name" style="font-size:35px;">{{ doctorprofile.user.username }}<span style="font-size:20px">{{ doctorprofile.user.first_name }} {{ doctorprofile.last_name }}</span></h4>
+            </div>
+            <div class="profile-info">
+              <div class="profile-info__item">
+                <p>{{ doctorprofile.user.email }}<span>Email ID</span></p>
+              </div>
+              <div class="profile-info__item">
+                <p>{{ doctorprofile.contact }}<span>Contact</span></p>
+              </div>
+              <div class="profile-info__item">
+                <p>{{ doctorprofile.hospital }}<span>Hospital</span></p>
+              </div>
+              <div class="profile-info__item">
+                <p>{{ doctorprofile.specialization }}<span>Specialization</span></p>
+              </div>
+              <div class="profile-info__item">
+                <p>{{ doctorprofile.consultation_fee }}<span>Consultation fee</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% if userprofile.user.pk == request.user.pk %}
+        <p>logged in</p>
+        <!-- <center><button class="button-three" onclick="window.location.href='{#{% url 'account:profile-update' user.pk %}#}'">Edit Profile</button></center> -->
+        {% endif %}
+{% endblock %}

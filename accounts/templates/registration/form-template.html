@@ -3,9 +3,8 @@
 {% endif %}
 {% for field in form %}
 <center><div class="form-group">
-        <span class="text-danger small">{{ field.errors }}</span>
-    <!-- <label class="control-label col-sm-2">{{ field.label_tag }}</label> -->
-    <div class="search-container">{{ field }}<br /></div>
+    <label class="control-label col-sm-2" style="font-size:15px;color: #F96;	display: block;">{{ field.label_tag }}</label>
+    <div class="search-container">{{ field }}</div>
     <!-- <input class="form-control" type="" id="search-bar" placeholder="{{ field.placeholder }}"><br /> -->
     <!-- {{ field }} -->
 </div>

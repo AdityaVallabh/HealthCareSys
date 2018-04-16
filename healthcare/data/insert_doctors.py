@@ -1,5 +1,5 @@
 from random import randrange
-from healthcare.models import Hospital
+from healthcare.models import Hospital, Department
 from accounts.models import DoctorProfile
 from django.contrib.auth.models import User
 from django.db import transaction
@@ -17,7 +17,8 @@ with open('./healthcare/data/doctors.tsv') as f:
             email = username + '@gmail.com'
             password = 'pass123'
             hospital = Hospital.objects.get(pk=(randrange(30)+1))
-            user, created = User.objects.get_or_create(username=username, first_name = first_name, last_name = last_name, email=email)
+            specialization, _ = Department.objects.get_or_create(department_name=specialization)
+            user, created = User.objects.get_or_create(username=username, first_name=first_name, last_name=last_name, email=email)
             print(created, inserted)
             if created:
                 user.set_password(password)
