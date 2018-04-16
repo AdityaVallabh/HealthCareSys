@@ -6,7 +6,7 @@ from django.forms.widgets import DateInput
 class UserForm(forms.ModelForm):
     password = forms.CharField(label='password',widget=forms.PasswordInput(attrs={'placeholder':'Password','class':'form-control','id':'search-bar','required':''}))
     username = forms.CharField(label='username',widget=forms.TextInput(attrs={'placeholder':'Username','class':'form-control','id':'search-bar','required':''}))
-    email = forms.EmailField(label='email',widget=forms.TextInput(attrs={'placeholder':'Email','class':'form-control','id':'search-bar','required':''}))
+    email = forms.EmailField(label='email',widget=forms.TextInput(attrs={'type':'email','placeholder':'Email','class':'form-control','id':'search-bar','required':''}))
     first_name = forms.CharField(label='first_name',widget=forms.TextInput(attrs={'placeholder':'First Name','class':'form-control','id':'search-bar','required':''}))
     last_name = forms.CharField(label='last_name',widget=forms.TextInput(attrs={'placeholder':'Last Name','class':'form-control','id':'search-bar','required':''}))
     class Meta:
@@ -38,7 +38,7 @@ class DoctorForm(forms.ModelForm):
 class UpdateUserProfile(forms.ModelForm):
     password = forms.CharField(label='password',widget=forms.PasswordInput(attrs={'placeholder':'Password','class':'form-control','id':'search-bar','required':''}))
     #username = forms.CharField(label='username',widget=forms.TextInput(attrs={'placeholder':'Username','class':'form-control','id':'search-bar','required':''}))
-    email = forms.EmailField(label='email',widget=forms.TextInput(attrs={'placeholder':'Email','class':'form-control','id':'search-bar','required':''}))
+    email = forms.EmailField(label='email',widget=forms.TextInput(attrs={'type':'email','placeholder':'Email','class':'form-control','id':'search-bar','required':''}))
     first_name = forms.CharField(label='first_name',widget=forms.TextInput(attrs={'placeholder':'First Name','class':'form-control','id':'search-bar','required':''}))
     last_name = forms.CharField(label='last_name',widget=forms.TextInput(attrs={'placeholder':'Last Name','class':'form-control','id':'search-bar','required':''}))
     class Meta:
