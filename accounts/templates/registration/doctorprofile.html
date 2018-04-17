@@ -30,8 +30,7 @@
             </div>
           </div>
         </div>
-        {% if userprofile.user.pk == request.user.pk %}
-        <p>logged in</p>
-        <!-- <center><button class="button-three" onclick="window.location.href='{#{% url 'account:profile-update' user.pk %}#}'">Edit Profile</button></center> -->
+        {% if doctorprofile.user.pk == request.user.pk %}
+        <center><button class="button-three" onclick="window.location.href='{% url 'accounts:userupdate' %}'">Edit Profile</button></center>
         {% endif %}
 {% endblock %}

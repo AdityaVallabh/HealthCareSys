@@ -43,7 +43,7 @@ class AppointmentCreate(CreateView):
         try:
             subject = "Invoice for Transaction %d" % transaction.id
             body = """
-Greetings %s!
+Greetings %s %s!
 You've recently carried out a transaction on HealthCareSys. Here are the details for future reference:-
 
 Transaction ID: %d
@@ -55,7 +55,7 @@ Success: %s
 
 Wishing you the best of health,
 Team HealthCareSys.
-""" % (transaction.from_user.username, transaction.id, transaction.from_user.username, transaction.to_user.username, transaction.amount, transaction.time, transaction.success)
+""" % (transaction.from_user.first_name, transaction.from_user.last_name, transaction.id, transaction.from_user.username, transaction.to_user.username, transaction.amount, transaction.time, transaction.success)
             email = EmailMessage(subject, body, to=[transaction.from_user.email])
             email.send()
         except:
@@ -68,7 +68,9 @@ Team HealthCareSys.
         appointment = form.save(commit=False)
         appointment.user = self.request.user
         appointment.fee = appointment.doctor.consultation_fee
-        transaction, success = Transaction.make_transaction(from_user=self.request.user.userprofile, to_user=appointment.doctor, amount=appointment.fee, reason="Book Appointment")
+        
+        transaction = Transaction()
+        transaction, success = transaction.make_transaction(from_user=self.request.user.userprofile, to_user=appointment.doctor, amount=appointment.fee, reason="Book Appointment")
         if success:
             appointment.transaction_id = transaction
             appointment.save()
@@ -87,7 +89,7 @@ class AppointmentUpdate(UpdateView):
             self.fields = ['appointment_time', 'status', 'prescription']
         else:
             self.fields = ['appointment_date']
-        return super().dispatch(request, *args, **kwargs)
+        return super(AppointmentUpdate,self).dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
         appointment = form.save(commit=False)

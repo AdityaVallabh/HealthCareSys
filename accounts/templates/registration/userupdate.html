@@ -1,0 +1,75 @@
+{% extends 'healthcare/base.html' %}
+{% block title %}Update Profile{% endblock %}
+
+{% block body %}
+<div>
+  <style>
+  #form-main{
+	width:100%;
+	float:left;
+	padding-top:0px;
+}
+
+#form-div {
+	background-color:rgba(2, 76, 122,0.4);
+	padding-left:35px;
+	padding-right:35px;
+	padding-top:35px;
+	padding-bottom:50px;
+	width: 550px;
+	float: left;
+	left: 48%;
+  margin: 60px auto;
+	position: absolute;
+  margin-top:30px;
+	margin-left: -260px;
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btn {
+  border-radius: 5px;
+  padding: 10px 35px;
+  font-size: 22px;
+  text-decoration: none;
+  margin: 20px;
+  color: #fff;
+  position: relative;
+  display: inline-block;
+}
+
+.btn:active {
+  transform: translate(0px, 5px);
+  -webkit-transform: translate(0px, 5px);
+  box-shadow: 0px 1px 0px 0px;
+}
+
+.blue {
+  background-color: #55acee;
+  box-shadow: 0px 5px 0px 0px #3C93D5;
+}
+
+.blue:hover {
+  background-color: #6FC6FF;
+}
+</style>
+  <div>
+  <center>
+    <div id="form-main">
+    <h2 style="color: #F96;	display: block;	font-size: 30px;font-weight: 400;">Update Profile<h2><br />
+  <div id="form-div">
+        <form id="contact" class="form-horizontal" action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h3 style="color: #F96;	display: block;	font-size: 30px;font-weight: 400;">{{ request.user.username }}</h3>
+            {% include 'registration/form-template.html' with form=user_form%}
+            {% include 'registration/form-template.html' with form=profile_form%}
+            <div class="form-group">
+                <center><button class="btn blue">Update</button></center>
+            </div>
+        </form>
+    </div>
+  </div></center></div>
+    {% endblock %}

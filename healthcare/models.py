@@ -40,7 +40,7 @@ class Transaction(models.Model):
     success = models.BooleanField(default=False)
 
     @transaction.atomic
-    def make_transaction(from_user, to_user, amount, reason):
+    def make_transaction(self,from_user, to_user, amount, reason):
         status = False
         if from_user.amount >= amount:
             from_user.amount -= amount
