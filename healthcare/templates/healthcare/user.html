@@ -4,7 +4,7 @@
     <table class="rwd-table">
         <thead>
             <th>ID</th>
-            <th>Patient Name</th>
+            <th>Doctor Name</th>
             <th>Booking Time</th>
             <th>Appointment Date</th>
             <th>Appointment Time</th>
@@ -14,7 +14,7 @@
             {% for upcoming_appointment in upcoming_appointments %}
             <tr onclick=window.location="{% url 'healthcare:appointment-detail' upcoming_appointment.pk %}">
                 <td>{{ upcoming_appointment.pk }}</td>
-                <td>{{ upcoming_appointment.user.first_name }} {{ upcoming_appointment.user.last_name }}</td>
+                <td>{{ upcoming_appointment.doctor.user.first_name }} {{ upcoming_appointment.doctor.user.last_name }}</td>
                 <td>{{ upcoming_appointment.booking_time }}</td>
                 <td>{{ upcoming_appointment.appointment_date }}</td>
                 <td>{{ upcoming_appointment.appointment_time }}</td>
@@ -33,7 +33,7 @@
     <table class="rwd-table">
         <thead>
             <th>ID</th>
-            <th>Patient Name</th>
+            <th>Doctor Name</th>
             <th>Booking Time</th>
             <th>Appointment Date</th>
             <th>Appointment Time</th>
@@ -43,7 +43,7 @@
             {% for past_appointment in past_appointments %}
             <tr onclick=window.location="{% url 'healthcare:appointment-detail' past_appointment.pk %}">
                 <td>{{ past_appointment.pk }}</td>
-                <td>{{ past_appointment.user.first_name }} {{ past_appointment.user.last_name }}</td>
+                <td>{{ past_appointment.doctor.user.first_name }} {{ past_appointment.doctor.user.last_name }}</td>
                 <td>{{ past_appointment.booking_time }}</td>
                 <td>{{ past_appointment.appointment_date }}</td>
                 <td>{{ past_appointment.appointment_time }}</td>

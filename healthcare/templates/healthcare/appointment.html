@@ -13,9 +13,9 @@
                         <th>Patient Name</th>
                         <td>{{ appointment.user.first_name }} {{ appointment.user.last_name }}</td>
                     </tr>
-                    <tr>
+                    <tr onclick=window.location="{% url 'accounts:doctor-detail' appointment.doctor.pk %}">
                         <th>Doctor Name</th>
-                        <td>{{ appointment.doctor.user.first_name }} {{ appointment.doctor.user.last_name }}</td>
+                        <td>{{ appointment.doctor.user.username }}</td>
                     </tr>
                     <tr>
                         <th>Booking Time</th>
