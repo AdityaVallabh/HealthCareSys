@@ -12,4 +12,5 @@ urlpatterns = [
     url(r'^transactions/$', views.TransactionListView.as_view(), name='transactions'),
     url(r'^transaction/(?P<pk>[0-9]+)/', views.TransactionDetail.as_view(), name='transaction-detail'),
     url(r'^search/', views.search, name='search'),
+    url(r'^print/', views.print_report, name='print'),
 ]

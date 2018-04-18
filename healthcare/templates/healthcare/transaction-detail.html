@@ -1,7 +1,7 @@
 {% extends 'healthcare/base.html' %}
 {% block title %}Transaction Details{% endblock %}
 {% block body %}
-        {% if transaction.to_user == request.user or transaction.from_user == request.user %}
+        {% if request.user.is_superuser or transaction.to_user == request.user or transaction.from_user == request.user %}
             <!-- <div class="container" style="background-color: rgba(249, 249, 249, 0.835); opacity:1"> -->
             <center><h1 style="color: #dd5;">Transaction Details</h1>
                 <table class="rwd-table">

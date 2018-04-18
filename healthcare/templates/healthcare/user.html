@@ -1,4 +1,3 @@
-Your balance: ₹{{ request.user.userprofile.amount }}
 <center><h3 style="color: #dd5;">Your upcoming Appointments</h3></center>
 <center><div>
     {% if upcoming_appointments %}
@@ -25,7 +24,7 @@ Your balance: ₹{{ request.user.userprofile.amount }}
         </tbody>
     </table>
     {% else %}
-    <h3>You have no upcoming appointments!</h3>
+    <h5 style="color: #dd5;">You have no upcoming appointments!</h5>
     {% endif %}
     
     
@@ -54,7 +53,7 @@ Your balance: ₹{{ request.user.userprofile.amount }}
         </tbody>
     </table>
     {% else %}
-    <h3>You have no previous appointments!</h3>
+    <h5 style="color: #dd5;">You have no previous appointments!</h5>
     {% endif %}
 </table>
 

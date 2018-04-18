@@ -31,5 +31,7 @@
 <h3>You have no transactions!</h3>
 {% endif %}
 </table>
+<center><button class="button-three" onclick="window.location.href='{% url 'healthcare:print' %}?data=transactions'">Print Report</button></center>
+
 </div></center>
 {% endblock %}

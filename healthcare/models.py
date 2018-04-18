@@ -56,7 +56,7 @@ class Transaction(models.Model):
         return reverse('healthcare:transaction-detail', kwargs={'pk': self.pk})
 
     def __str__(self):
-        return str(self.transaction.pk) + ': ' + self.from_user + ' to ' + self.to_user + ' - ' + self.amount
+        return str(self.id) + ': ' + str(self.from_user) + ' to ' + str(self.to_user) + ' - ' + str(self.amount)
 
 
 

@@ -11,6 +11,8 @@ from django.utils.decorators import method_decorator
 from django.db.models import Q
 from datetime import datetime
 from django.core.mail import EmailMessage
+from django.http import HttpResponse
+from .resources import AppointmentResource, TransactionResource
 
 def index(request):
     return render(request, 'healthcare/home.html')
@@ -32,6 +34,29 @@ def search(request):
 
     return render(request, 'healthcare/search.html', {'locations': locations, 'departments': departments})
 
+def print_report(request):
+    if request.user.is_superuser:
+        if request.GET.get('data', 'none') == 'appointments':
+            appointment_resource = AppointmentResource()
+            dataset = appointment_resource.export()
+            response = HttpResponse(dataset.csv, content_type='text/csv')
+            response['Content-Disposition'] = 'attachment; filename="appointments.csv"'
+            return response
+        elif request.GET.get('data', 'none') == 'transactions':
+            transaction_resource = TransactionResource()
+            dataset = transaction_resource.export()
+            response = HttpResponse(dataset.csv, content_type='text/csv')
+            response['Content-Disposition'] = 'attachment; filename="transactions.csv"'
+            return response
+    return redirect('/')
+            
+
+def export(request):
+    person_resource = PersonResource()
+    dataset = person_resource.export()
+    response = HttpResponse(dataset.csv, content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="persons.csv"'
+    return response
 
 @method_decorator(login_required, name='dispatch')
 class AppointmentCreate(CreateView):
@@ -124,6 +149,8 @@ class IndexView(generic.ListView):
             appointments=Appointment.objects.filter(user=self.request.user)
         elif hasattr(self.request.user, 'doctorprofile'):
             appointments=Appointment.objects.filter(doctor=self.request.user.doctorprofile)
+        elif (self.request.user.is_superuser):
+            appointments = Appointment.objects.all()
 
         for appointment in appointments:
             x=datetime.combine(appointment.appointment_date,datetime.min.time())
@@ -149,7 +176,9 @@ class TransactionListView(generic.ListView):
     context_object_name = 'transactions'
 
     def get_queryset(self):
-        if self.request.user.is_authenticated():
+        if self.request.user.is_superuser:
+            return Transaction.objects.all()
+        elif self.request.user.is_authenticated():
             return Transaction.objects.filter(Q(from_user=self.request.user) | Q(to_user=self.request.user))
 
 class TransactionDetail(generic.DetailView):

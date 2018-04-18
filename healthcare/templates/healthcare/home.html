@@ -3,12 +3,13 @@
 
 {% block body %}
     {% if request.user.is_authenticated %}
-        Logged in as {{ user }} <br />
         {% if user.doctorprofile  %}
 
         {% include 'healthcare/doctor.html' %}
-        {% else %}
+        {% elif user.userprofile %}
         {% include 'healthcare/user.html' %}
+        {% elif user.is_superuser %}
+        {% include 'healthcare/admin.html' %}
 
         {% endif %}
     {% else %}

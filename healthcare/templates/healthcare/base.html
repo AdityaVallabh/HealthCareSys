@@ -32,8 +32,14 @@
           </div>
           <div class="collapse navbar-collapse navbar-right" id="myNavbar">
             <ul class="nav navbar-nav">
-              <li class=""><a href="#contact">Articles</a></li>
+              {% if request.user.is_authenticated %}
+                <li class=""><a>₹{{ request.user.userprofile.amount }}</a></li>
+                {% endif %}
+              {% if request.user.is_superuser %}
+              <li class=""><a href="/admin/">Admin</a></li>
+              {% elif not request.user.doctorprofile %}
               <li class=""><a href="{% url 'healthcare:search' %}">Search</a></li>
+              {% endif %}
               {% if request.user.is_authenticated %}
               <li class=""><a href="{% url 'healthcare:index' %}">Appointments</a></li>
               <li class=""><a href="{% url 'healthcare:transactions' %}">Transactions</a></li>
@@ -44,7 +50,7 @@
               <li class=""><a href="{% url 'accounts:doctor-detail' request.user.doctorprofile.pk %}">Profile</a></li>
               {% elif request.user.is_authenticated and request.user.userprofile %}
               <li class=""><a href="{% url 'accounts:user-detail' request.user.userprofile.pk %}">Profile</a></li>
-              {% else %}
+              {% elif not request.user.is_authenticated %}
               <li class=""><a href="{% url 'accounts:home' %}?role=doctor">Doctor</a></li>
               {% endif %}
               <li class="">

@@ -1,10 +1,11 @@
-<center><h3 style="color: #dd5;">Your upcoming Appointments</h3></center>
+<center><h3 style="color: #dd5;">All upcoming Appointments</h3></center>
 <center><div>
     {% if upcoming_appointments %}
     <table class="rwd-table">
         <thead>
             <th>ID</th>
             <th>Patient Name</th>
+            <th>Doctor Name</th>
             <th>Booking Time</th>
             <th>Appointment Date</th>
             <th>Appointment Time</th>
@@ -15,6 +16,7 @@
             <tr onclick=window.location="{% url 'healthcare:appointment-detail' upcoming_appointment.pk %}">
                 <td>{{ upcoming_appointment.pk }}</td>
                 <td>{{ upcoming_appointment.user.first_name }} {{ upcoming_appointment.user.last_name }}</td>
+                <td>{{ upcoming_appointment.doctor.user.first_name }} {{ upcoming_appointment.doctor.user.last_name }}</td>
                 <td>{{ upcoming_appointment.booking_time }}</td>
                 <td>{{ upcoming_appointment.appointment_date }}</td>
                 <td>{{ upcoming_appointment.appointment_time }}</td>
@@ -24,16 +26,17 @@
         </tbody>
     </table>
     {% else %}
-    <h5 style="color: #dd5;">You have no upcoming appointments!</h5>
+    <h3>There are no upcoming appointments!</h3>
     {% endif %}
     
     
-    <center><h3 style="color: #dd5;">Your past Appointments</h3></center>
+    <center><h3 style="color: #dd5;">All past Appointments</h3></center>
     {% if past_appointments %}
     <table class="rwd-table">
         <thead>
             <th>ID</th>
             <th>Patient Name</th>
+            <th>Doctor Name</th>
             <th>Booking Time</th>
             <th>Appointment Date</th>
             <th>Appointment Time</th>
@@ -44,6 +47,7 @@
             <tr onclick=window.location="{% url 'healthcare:appointment-detail' past_appointment.pk %}">
                 <td>{{ past_appointment.pk }}</td>
                 <td>{{ past_appointment.user.first_name }} {{ past_appointment.user.last_name }}</td>
+                <td>{{ past_appointment.doctor.user.first_name }} {{ past_appointment.doctor.user.last_name }}</td>
                 <td>{{ past_appointment.booking_time }}</td>
                 <td>{{ past_appointment.appointment_date }}</td>
                 <td>{{ past_appointment.appointment_time }}</td>
@@ -53,8 +57,10 @@
         </tbody>
     </table>
     {% else %}
-    <h5 style="color: #dd5;">You have no previous appointments!</h5>
+    <h3>There are no previous appointments!</h3>
     {% endif %}
 </table>
+
+<center><button class="button-three" onclick="window.location.href='{% url 'healthcare:print' %}?data=appointments'">Print Report</button></center>
 
 </div></center>

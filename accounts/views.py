@@ -9,6 +9,7 @@ from healthcare.models import Department
 from django.views import generic
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.db import transaction
 
 class UserFormView(View):
     form_class = UserForm
@@ -23,6 +24,7 @@ class UserFormView(View):
         user_form = self.form_class(None)
         return render(request, self.template_name, {'user_form': user_form, 'profile_form': profile_form})
 
+    @transaction.atomic
     def post(self, request):
         form = self.form_class(request.POST)
 
