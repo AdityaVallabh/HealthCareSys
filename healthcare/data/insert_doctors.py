@@ -16,7 +16,7 @@ with open('./healthcare/data/doctors.tsv') as f:
             specialization = row[3].replace('\n','')
             email = username + '@gmail.com'
             password = 'pass123'
-            hospital = Hospital.objects.get(pk=(randrange(30)+1))
+            hospital = Hospital.objects.get(pk=(randrange(15)+1))
             specialization, _ = Department.objects.get_or_create(department_name=specialization)
             user, created = User.objects.get_or_create(username=username, first_name=first_name, last_name=last_name, email=email)
             print(created, inserted)
