@@ -7,7 +7,7 @@
             <div class="profile">
               <div class="image-content">
                 <div class="circle circle-1"></div>
-                <div class="circle circle-2"></div><img src="{% static "img/doctor1.jpg" %}" alt="imgprofile"/>
+                <div class="circle circle-2"></div><img src="{% static "img/user.png" %}" alt="imgprofile"/>
               </div>
               <h4 class="profile__name" style="font-size:35px;">{{ userprofile.user.username }}<span style="font-size:20px">{{ userprofile.user.first_name }} {{ userprofile.last_name }}</span></h4>
             </div>
@@ -27,7 +27,9 @@
             </div>
           </div>
         </div>
+        <p>
         {% if userprofile.user.pk == request.user.pk %}
         <center><button class="button-three" onclick="window.location.href='{% url 'accounts:userupdate' %}'">Edit Profile</button></center>
         {% endif %}
+        </p><br />
 {% endblock %}

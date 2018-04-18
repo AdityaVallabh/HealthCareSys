@@ -34,7 +34,12 @@
         {% for doctor in doctors %}
         <li>
           <div class="list-left">
-            <img src="{% static "img/doctor1.jpg" %}"  width="100px" height="285px">
+            <img id="img{{ doctor.pk }}" src="/static/img/doctor1.jpg"  width="100px" height="285px">
+            <script>
+                var num = ({{ doctor.pk }} % 4) + 1;
+                var source = "/static/img/doctor" + num + ".jpg";
+                document.getElementById("img{{ doctor.pk }}").src = source;
+            </script>
           </div>
           <div class="list-right">
             <h2>Dr.{{ doctor.user.first_name }} {{ doctor.user.last_name }}</h2>

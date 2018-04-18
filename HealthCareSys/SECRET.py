@@ -1,2 +1,2 @@
-EMAIL = ""
-PASSWORD = ""
+EMAIL = "johnthehackerkid@gmail.com"
+PASSWORD = "supersecretpassword"
