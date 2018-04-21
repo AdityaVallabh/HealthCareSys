@@ -1,6 +1,8 @@
 # HealthCareSys
 
-HealthCareSys is a django based Online Health Care Management System application
+![HealthCareSys](healthcare/static/img/logo.png)
+
+HealthCareSys is a django based Online Health Care System
 
 ## Instructions
 
