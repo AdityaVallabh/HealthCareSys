@@ -31,7 +31,8 @@
 <h3>You have no transactions!</h3>
 {% endif %}
 </table>
+{% if request.user.is_superuser %}
 <center><button class="button-three" onclick="window.location.href='{% url 'healthcare:print' %}?data=transactions'">Print Report</button></center>
-
+{% endif %}
 </div></center>
 {% endblock %}

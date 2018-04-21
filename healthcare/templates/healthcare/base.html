@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>{% block title %}HealthCareSys{% endblock %}</title>
     {% load staticfiles %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -33,7 +34,11 @@
           <div class="collapse navbar-collapse navbar-right" id="myNavbar">
             <ul class="nav navbar-nav">
               {% if request.user.is_authenticated %}
+                {% if request.user.userprofile %}
                 <li class=""><a>₹{{ request.user.userprofile.amount }}</a></li>
+                {% else %}
+                <li class=""><a>₹{{ request.user.doctorprofile.amount }}</a></li>
+                {% endif %}
                 {% endif %}
               {% if request.user.is_superuser %}
               <li class=""><a href="/admin/">Admin</a></li>
